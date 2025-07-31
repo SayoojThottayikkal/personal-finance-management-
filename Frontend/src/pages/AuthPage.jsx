@@ -1,45 +1,27 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [Login, setLogin] = useState(true);
   const [form, setForm] = useState({ username: "", name: "", password: "" });
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = isLogin ? "" : "";
-
-    const res = await axios.post(url, form);
-
-    if (isLogin && res.data.token) {
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
-    } else if (!isLogin) {
-      setIsLogin(true);
-      setForm({ username: "", password: "" });
-    }
-  };
-
   return (
-    <div className="p-4 max-w-md mx-auto ">
+    <div className="p-4 max-w-md mx-auto mt-5 sm:mt-20  bg-gray-300 shadow-xl rounded-lg ">
       <h2 className="text-2xl font-bold mb-4">
-        {isLogin ? "Login" : "Register"}
+        {Login ? "Login" : "Register"}
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form className="space-y-4">
         <input
           name="username"
           value={form.username}
           onChange={handleChange}
           placeholder="Username"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 "
         />
-        {!isLogin && (
+        {!Login && (
           <input
             type="text"
             name="name"
@@ -61,16 +43,16 @@ export default function AuthPage() {
           type="submit"
           className="bg-blue-500 text-blue-500 px-4 py-2 w-full"
         >
-          {isLogin ? "Login" : "Register"}
+          {Login ? "Login" : "Register"}
         </button>
       </form>
       <p className="mt-4 text-center">
-        {isLogin ? "Don't have an account?" : "Already have an account?"}
+        {Login ? "Don't have an account?" : "Already have an account?"}
         <button
-          onClick={() => setIsLogin(!isLogin)}
+          onClick={() => setLogin(!Login)}
           className="text-blue-500 underline ml-2"
         >
-          {isLogin ? "Register" : "Login"}
+          {Login ? "Register" : "Login"}
         </button>
       </p>
     </div>
