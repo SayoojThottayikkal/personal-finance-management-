@@ -4,17 +4,40 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
 import AddTransaction from "./pages/AddTransaction";
-
 import Transactions from "./pages/Transactions";
+import PrivateRoute from "./components/PrivateRoute";
+
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/transactions" element={<Transactions />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/addtransction" element={<AddTransaction />} />
+
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/transactions"
+          element={
+            <PrivateRoute>
+              <Transactions />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addtransction"
+          element={
+            <PrivateRoute>
+              <AddTransaction />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </>
   );

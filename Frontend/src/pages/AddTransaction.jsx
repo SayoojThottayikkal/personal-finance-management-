@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TransactionForm from "../components/TransactionForm";
+import { addTransaction } from "../service/api";
 
 function AddTransaction() {
   const [form, setForm] = useState({
@@ -15,6 +16,18 @@ function AddTransaction() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await addTransaction(form);
+      alert("Transaction added successfully!");
+      navigate("/transactions");
+    } catch (error) {
+      console.error(
+        "Failed to add transaction:",
+        error.response?.data || error.message
+      );
+      alert("Error: Could not add transaction.");
+    }
   };
 
   return (
