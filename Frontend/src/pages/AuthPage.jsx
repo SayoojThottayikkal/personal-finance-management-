@@ -59,10 +59,10 @@ export default function AuthPage() {
 
         {!Login && (
           <input
-            name="name"
-            value={form.name}
+            name="email"
+            value={form.email}
             onChange={handleChange}
-            placeholder="Full Name"
+            placeholder="Email"
             className="w-full border rounded p-2"
           />
         )}
