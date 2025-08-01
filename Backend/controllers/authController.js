@@ -3,9 +3,19 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({ error: "Email already in use" });
+  }
+
   const hashed = await bcrypt.hash(password, 10);
-  const user = new User({ username, password: hashed });
+  const user = new User({ username, email, password: hashed });
   await user.save();
   res.json({ msg: "User registered" });
 };
