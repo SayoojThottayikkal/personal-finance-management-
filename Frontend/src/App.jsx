@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
+import AddTransaction from "./pages/AddTransaction";
 
 import Transactions from "./pages/Transactions";
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/addtransction" element={<AddTransaction />} />
       </Routes>
     </>
   );

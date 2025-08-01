@@ -1,34 +1,42 @@
-import React from "react";
+import { useState } from "react";
 
-export default function FilterBar({ filter, setFilter }) {
+export default function FilterBar({ onFilter }) {
+  const [filters, setFilters] = useState({ category: "", from: "", to: "" });
+
   const handleChange = (e) => {
-    setFilter({ ...filter, [e.target.name]: e.target.value });
+    setFilters({ ...filters, [e.target.name]: e.target.value });
+  };
+
+  const applyFilter = () => {
+    onFilter(filters);
   };
 
   return (
-    <div className="flex gap-4 mb-4">
+    <div className="bg-white p-4 shadow mb-4 flex flex-col md:flex-row gap-4">
       <input
-        type="text"
+        className="border p-2 flex-1"
         name="category"
-        value={filter.category}
+        placeholder="Category"
         onChange={handleChange}
-        placeholder="Filter by category"
-        className="border p-2"
       />
       <input
-        type="date"
-        name="startDate"
-        value={filter.startDate}
-        onChange={handleChange}
         className="border p-2"
+        type="date"
+        name="from"
+        onChange={handleChange}
       />
       <input
-        type="date"
-        name="endDate"
-        value={filter.endDate}
-        onChange={handleChange}
         className="border p-2"
+        type="date"
+        name="to"
+        onChange={handleChange}
       />
+      <button
+        onClick={applyFilter}
+        className="bg-green-500 text-white px-4 py-2"
+      >
+        Filter
+      </button>
     </div>
   );
 }
