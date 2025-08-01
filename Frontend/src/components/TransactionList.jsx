@@ -1,4 +1,8 @@
-export default function TransactionList({ transactions, onDelete, onUpdate }) {
+import { useNavigate } from "react-router-dom";
+
+export default function TransactionList({ transactions, onDelete }) {
+  const navigate = useNavigate();
+
   return (
     <div className="mt-4 space-y-2">
       {transactions.map((trnctn) => (
@@ -30,7 +34,7 @@ export default function TransactionList({ transactions, onDelete, onUpdate }) {
               Delete
             </button>
             <button
-              onClick={() => onUpdate(trnctn._id)}
+              onClick={() => navigate("/addtransction", { state: trnctn })}
               className="text-blue-500 text-sm"
             >
               Edit
