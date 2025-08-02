@@ -5,7 +5,7 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function AuthPage() {
   const [Login, setLogin] = useState(true);
-  const [form, setForm] = useState({ username: "", name: "", password: "" });
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,7 +26,7 @@ export default function AuthPage() {
         navigate("/");
       } else {
         await registerUser(form);
-        toast.success("Registration successful! Please login.");
+        toast.success("Registration successful Please login.");
         setLogin(true);
       }
     } catch (error) {

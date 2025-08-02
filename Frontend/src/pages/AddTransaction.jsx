@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TransactionForm from "../components/TransactionForm";
 import { addTransaction, updateTransaction } from "../service/api";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 function AddTransaction() {
   const location = useLocation();
@@ -37,15 +38,15 @@ function AddTransaction() {
     try {
       if (editingTransaction?._id) {
         await updateTransaction(editingTransaction._id, form);
-        alert("Transaction updated successfully!");
+        toast.success("Transaction updated successfully!");
       } else {
         await addTransaction(form);
-        alert("Transaction added successfully!");
+        toast.success("Transaction added successfully!");
       }
       navigate("/transactions");
     } catch (error) {
       console.error("Error submitting transaction:", error);
-      alert("Error: Could not save transaction.");
+      toast.error("Error: Could not save transaction.");
     }
   };
 
@@ -58,6 +59,11 @@ function AddTransaction() {
         form={form}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        transition={Bounce}
       />
     </div>
   );

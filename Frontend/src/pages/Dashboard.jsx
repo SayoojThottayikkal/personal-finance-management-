@@ -3,7 +3,6 @@ import ChartComponent from "../components/ChartComponent";
 import { getTransactions } from "../service/api";
 
 function Dashboard() {
-  const [transactions, setTransactions] = useState([]);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [categoryData, setCategoryData] = useState([]);
@@ -15,7 +14,6 @@ function Dashboard() {
   const loadTransactions = async () => {
     try {
       const data = await getTransactions();
-      setTransactions(data);
 
       let totalIncome = 0;
       let totalExpense = 0;

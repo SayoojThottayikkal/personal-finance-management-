@@ -38,7 +38,7 @@ export default function ChartComponent({ income, expense, categoryData }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-3 pl-2 pr-2">
       <div className="bg-white p-5 rounded-xl shadow h-90 flex flex-col justify-center items-center">
         <h2 className="text-lg font-semibold mb-2 text-center ">
-          <span className="text-green-800 font-bold">Income</span> vs{" "}
+          <span className="text-green-800 font-bold">Income</span> vs
           <span className="text-red-700 font-bold">Expense</span>
         </h2>
         <Pie data={pieChartData} width={400} height={400} />

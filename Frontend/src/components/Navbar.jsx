@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <nav className="text-black p-4 flex flex-col sm:flex-row justify-between items-center gap-2 shadow shadow-fuchsia-800 bg-[#41026b]">
       <h1 className="text-xl sm:text-4xl font-bold p-2 text-white">
-        Finance Manager
+        Finance Management
       </h1>
 
       <div className="space-x-4 text-white">
